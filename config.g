@@ -30,10 +30,10 @@ M569 P3 S1                               ; Drive 3 goes backwards (E0)
 
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X100 Y100 Z100 E415                  ; Set steps per mm with 1/16 and BMG etruder with 0.9° stepper
-M566 X600.00 Y600.00 Z18.00 E300.00      ; Set maximum instantaneous speed changes (mm/min)
-M203 X6000.00 Y6000.00 Z180.00 E6000.00  ; Set maximum speeds (mm/min)
-M201 X1500.00 Y1500.00 Z100.00 E10000.00 ; Set accelerations (mm/s^2)
-M906 X500.00 Y500.00 Z500.00 E500.00 I30 ; Set motor currents (mA) and motor idle factor in per cent
+M566 X600 Y600 Z18 E300      ; Set maximum instantaneous speed changes (mm/min)
+M203 X6000 Y6000 Z180 E6000  ; Set maximum speeds (mm/min)
+M201 X1500 Y1500 Z100 E10000 ; Set accelerations (mm/s^2)
+M906 X1680 Y1680 Z1680 E1400 I30 ; Set motor currents (mA) and motor idle factor in per cent
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
