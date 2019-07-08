@@ -30,10 +30,10 @@ M569 P3 S1                               ; Drive 3 goes backwards (E0)
 
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X100 Y100 Z100 E415                  ; Set steps per mm with 1/16 and BMG etruder with 0.9° stepper
-M566 X600 Y600 Z18 E300      ; Set maximum instantaneous speed changes (mm/min)
-M203 X6000 Y6000 Z180 E6000  ; Set maximum speeds (mm/min)
-M201 X1500 Y1500 Z100 E10000 ; Set accelerations (mm/s^2)
-M906 X1680 Y1680 Z1680 E1400 I30 ; Set motor currents (mA) and motor idle factor in per cent
+M566 X600 Y600 Z18 E300                  ; Set maximum instantaneous speed changes (mm/min)
+M203 X6000 Y6000 Z180 E6000              ; Set maximum speeds (mm/min)
+M201 X1500 Y1500 Z100 E10000             ; Set accelerations (mm/s^2)
+M906 X1600 Y1600 Z1600 E1400 I30         ; Set motor currents (mA) and motor idle factor in per cent
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
@@ -56,11 +56,12 @@ M307 H1 B0 A315.9 C236.5 D3.0 V12.4 S0.5     ; Disable bang-bang mode for the no
 M305 P0 T100000 B4725 C7.060000e-8 R4700     ; Set thermistor + ADC parameters for heater 0
 M143 H0 S130                                 ; Set temperature limit for heater 0 to 130C
 M305 P1 T100000 B4725 C7.060000e-8 R4700     ; Set thermistor + ADC parameters for heater 1
-M143 H1 S275                             ; Set temperature limit for heater 1 to 275C
+M143 H1 S275                                 ; Set temperature limit for heater 1 to 275C
 
 ; Fans
 M106 P0 S0 I0 F500 H-1                   ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
 M106 P1 S1 I0 F500 H1 T45                ; Set fan 1 value, PWM signal inversion and frequency. Thermostatic control is turned on
+M106 P2 H100:101 T45:55 L0.3             ; set fan 2 value, turn on at 30% if the CPU temperature reaches 45C, and increase to full speed gradually as the temperature rises to 55C
 
 ; Tools
 M563 P0 D0 H1                            ; Define tool 0
@@ -73,12 +74,11 @@ G10 P0 R0 S0                             ; Set initial tool 0 active and standby
 M305 P101 S"DuetDriversTemp"             ; temperature warning and overheat flags on the TMC2660 on Duet
 ;M305 P102 S"DuexDriversTemp"            ; temperature warning and overheat flags on the TMC2660 on Duex
 M912 P0 S4.0                             ; calibrate CPU temperature
-;M556 S80 X0.125 Y0 Z0.5                  ; axis skew compensation
+;M556 S80 X0.125 Y0 Z0.5                 ; axis skew compensation
 
 ; Miscellaneous
 T0                                       ; Select first tool
 
-;M501                                     ; Read stored parameters from EEPROM
+;M501                                    ; Read stored parameters from EEPROM
 
-;M80										; Turn 24V power supply ON
-
+;M80										                 ; Turn 24V power supply ON
