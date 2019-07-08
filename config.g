@@ -58,9 +58,9 @@ M305 P1 T100000 B4725 C7.060000e-8 R4700     ; Set thermistor + ADC parameters f
 M143 H1 S275                                 ; Set temperature limit for heater 1 to 275C
 
 ; Fans
-M106 P0 S0 I0 F500 H-1 CTool_Fan              ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
-M106 P1 S1 I0 F500 H1 T45 CExtruder_Fan       ; Set fan 1 value, PWM signal inversion and frequency. Thermostatic control is turned on
-M106 P2 H100:101 T45:55 L0.3 CElectronic_Fan  ; set fan 2 value, turn on at 30% if the CPU temperature reaches 45C, and increase to full speed gradually as the temperature rises to 55C
+M106 P0 S0 I0 F500 H-1 C"HotEnd_Fan"            ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
+M106 P1 S1 I0 F500 H1 T45 C"Extruder_Fan"       ; Set fan 1 value, PWM signal inversion and frequency. Thermostatic control is turned on
+M106 P2 H100:101 T45:55 L0.3 C"Electronic_Fan"  ; set fan 2 value, turn on at 30% if the CPU temperature reaches 45C, and increase to full speed gradually as the temperature rises to 55C
 
 ; Tools
 M563 P0 D0 H1                            ; Define tool 0
