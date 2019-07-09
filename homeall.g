@@ -3,6 +3,7 @@
 ;
 
 M42 P2 S255             ; LED strip on heater 2 on
+M913 X50 Y50 Z50        ; set X Y Z motors to 50% of their normal current
 G91                     ; relative positioning
 G1 Z5 F6000 S2          ; lift Z relative to current position
 M98 Pdeployprobe.g      ; deploy mechanical Z probe
@@ -19,3 +20,4 @@ G30                     ; home Z by probing the bed
 ;G90                    ; absolute positioning
 
 M98 Pretractprobe.g     ; retract mechanical Z probe
+M913 X100 Y100 Z100     ; set X Y Z motors to 100% of their normal current
