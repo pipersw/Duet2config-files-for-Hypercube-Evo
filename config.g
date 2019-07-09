@@ -74,6 +74,8 @@ M305 P101 S"DuetDriversTemp"             ; temperature warning and overheat flag
 ;M305 P102 S"DuexDriversTemp"            ; temperature warning and overheat flags on the TMC2660 on Duex
 M912 P0 S4.0                             ; calibrate CPU temperature
 ;M556 S80 X0.125 Y0 Z0.5                 ; axis skew compensation
+M307 H2 A-1 C-1 D-1                      ; Disable heater 2 on PWM channel for LED strip
+M42 P2 S0                                ; LED strip on heater 2 off
 
 ; Miscellaneous
 T0                                       ; Select first tool
