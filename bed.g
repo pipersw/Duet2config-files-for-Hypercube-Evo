@@ -1,7 +1,8 @@
 ; bed.g
 ; called to perform automatic bed compensation via G32
 ;
-M42 P2 S0                   ; LED strip on heater 2 on
+
+M42 P2 S255                 ; LED strip on heater 2 on
 
 M561                        ; clear any bed transform
 G28 				                ; Home
@@ -13,4 +14,3 @@ G28 				                ; Home
 ;G30 P5 X130 Y0 Z-99999 	  ; PROBE POINT 6 Front Middle
 ;G30 P6 X290 Y0 Z-99999 S3 	; Probe near a leadscrew and calibrate the 3 motors to achieve self leveling
 ;G28				                ; Home
-
