@@ -12,4 +12,4 @@ G1 Y190 F9000                ; move heatbed to front
 
 M84                          ; steppers off
 G90                          ; relative positioning
-M81 S1						 ; Turn 24V power off when all thermostatic fans have turned off 
+M81 S1						           ; Turn 24V power off when all thermostatic fans have turned off 
