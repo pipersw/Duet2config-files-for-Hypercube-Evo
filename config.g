@@ -32,7 +32,7 @@ M92 X80 Y80 Z400 E415                  ; Set steps per mm with 1/16 and BMG etru
 M566 X600 Y600 Z30 E3000                  ; Set maximum instantaneous speed changes (mm/min)
 M203 X15000 Y15000 Z1500 E6000              ; Set maximum speeds (mm/min)
 M201 X3000 Y3000 Z100 E10000             ; Set accelerations (mm/s^2)
-M906 X1600 Y1600 Z1600 E1400 I30         ; Set motor currents (mA) and motor idle factor
+M906 X1400 Y1400 Z1400 E1200 I30         ; Set motor currents (mA) and motor idle factor
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
@@ -47,7 +47,7 @@ M574 Z1 S2                               ; Set endstops controlled by probe
 M307 H3 A-1 C-1 D-1                      ; Disable heater 3 on PWM channel for BLTouch
 M558 P9 H5 F120 T6000                    ; Set Z probe type to bltouch and the dive height + speeds
 G31 P25 X0 Y82 Z0                        ; Set Z probe trigger value, offset and trigger height
-M557 X5:190 Y85:205 S20                  ; Define mesh grid
+M557 X0:300 Y80:220 S20                  ; Define mesh grid
 
 ; Heaters
 M307 H0 A254.7 C545.2 D0.9 S1.00 V24.4 B0     ; Disable bang-bang mode for the bed heater and set PWM limit
