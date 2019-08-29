@@ -5,8 +5,8 @@
 M80			; power on 24V power supply
 M42 P2 S255		; LED enclosure
 G91                     ; relative positioning
-G1 Z5 F6000 S2          ; lift Z relative to current position
-G1 S1 X-335 Y-315 F10000 ; move quickly to X or Y endstop and stop there (first pass)
+G1 Z5 F2000 S2          ; lift Z relative to current position
+G1 S1 X-335 Y-315 F6000 ; move quickly to X or Y endstop and stop there (first pass)
 G1 S1 X-335             ; home X axis
 G1 S1 Y-315             ; home Y axis
 G1 X5 Y5 F6000          ; go back a few mm
