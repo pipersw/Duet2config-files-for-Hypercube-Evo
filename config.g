@@ -28,9 +28,9 @@ M569 P3 S1                               ; Drive 3 goes backwards (E0)
 ;M671 X-74:-74:330 Y-30:330:150 S1.0     ; Z leadscrews are at (-74,-30), (-74,330) and (330,150), 1mm compensation max
 
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
-M92 X80 Y80 Z400 E415                  ; Set steps per mm with 1/16 and BMG etruder with 0.9° stepper
-M566 X600 Y600 Z30 E3000                  ; Set maximum instantaneous speed changes (mm/min)
-M203 X15000 Y15000 Z1500 E6000              ; Set maximum speeds (mm/min)
+M92 X80 Y80 Z400 E415                    ; Set steps per mm with 1/16 and BMG etruder with 0.9° stepper
+M566 X600 Y600 Z30 E3000                 ; Set maximum instantaneous speed changes (mm/min)
+M203 X30000 Y30000 Z1500 E6000           ; Set maximum speeds (mm/min)
 M201 X3000 Y3000 Z100 E10000             ; Set accelerations (mm/s^2)
 M906 X1400 Y1400 Z1400 E1200 I30         ; Set motor currents (mA) and motor idle factor
 M84 S30                                  ; Set idle timeout
