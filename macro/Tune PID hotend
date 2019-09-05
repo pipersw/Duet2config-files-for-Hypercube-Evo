@@ -1,0 +1,1 @@
+M303 H1 P1 S240 ; tune heater 1 using 40% PWM, target temperature 240C

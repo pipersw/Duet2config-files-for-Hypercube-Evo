@@ -1,0 +1,1 @@
+M303 H0 P1 S100 ; tune bed using 40% PWM, target temperature 100C
