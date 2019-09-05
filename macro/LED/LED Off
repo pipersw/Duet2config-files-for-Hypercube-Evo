@@ -1,0 +1,2 @@
+;Light up LED in enclosure
+M42 P2 S0
