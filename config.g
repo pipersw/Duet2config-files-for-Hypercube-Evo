@@ -20,8 +20,10 @@ M569 P0 S0                               ; Drive 0 goes forwards (X)
 M569 P1 S0                               ; Drive 1 goes forwards (Y)
 M569 P2 S0                               ; Drive 2 goes forwards (Z)
 M569 P3 S1                               ; Drive 3 goes backwards (E0)
+M569 P4 S0                               ; Drive 4 goes forwards (E1/Z2)
 
-M584 X0 Y1 Z2 E3:4                       ; Set drive mapping
+M584 X0 Y1 Z2:4 E3                       ; Set drive mapping, two Z motors connected to driver outputs Z and E1
+M671 X-25:325 Y150:150 S1.0 		 ; leadscrews at left (connected to Z) and right (connected to E1) of X axis
 
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X80 Y80 Z400 E820                    ; Set steps per mm with 1/16 and BMG extruder with 0.9° stepper
