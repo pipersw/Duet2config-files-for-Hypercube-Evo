@@ -78,4 +78,4 @@ M42 P2 S0                                ; LED strip on heater 2 off
 ; Miscellaneous
 T0                                       ; Select first tool
 
-;M501                                    ; Read stored parameters from EEPROM
+M501                                    ; Read stored parameters from EEPROM
