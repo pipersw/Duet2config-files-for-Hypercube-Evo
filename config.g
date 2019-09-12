@@ -65,6 +65,7 @@ M106 P2 H100:101:102 T45:55 L0.3 C"Electronic_Fan"  ; set fan 2 value, turn on a
 M563 P0 D0 H1                            ; Define tool 0
 G10 P0 X0 Y0 Z0                          ; Set tool 0 axis offsets
 G10 P0 R0 S0                             ; Set initial tool 0 active and standby temperatures to 0C
+M572 D0 S0.1                             ; pressure advance with 0.1mm retractation
 
 ; Automatic saving after power loss is not enabled
 
