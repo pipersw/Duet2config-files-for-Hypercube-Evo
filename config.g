@@ -27,9 +27,9 @@ M671 X-25:325 Y150:150 S1.0 		 ; leadscrews at left (connected to Z) and right (
 
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X80 Y80 Z400 E820                    ; Set steps per mm with 1/16 and BMG extruder with 0.9° stepper
-M566 X1200 Y1200 Z60 E3000               ; Set maximum instantaneous speed changes (mm/min)
-M203 X30000 Y30000 Z1000 E6000           ; Set maximum speeds (mm/min)
-M201 X5000 Y5000 Z500 E10000            ; Set accelerations (mm/s^2)
+M566 X1200 Y1200 Z60 E3600               ; Set maximum instantaneous speed changes (mm/min)
+M203 X30000 Y30000 Z1000 E3600           ; Set maximum speeds (mm/min)
+M201 X5000 Y5000 Z500 E3000             ; Set accelerations (mm/s^2)
 M906 X1400 Y1400 Z1400 E1200 I30         ; Set motor currents (mA) and motor idle factor
 M84 S30                                  ; Set idle timeout
 
