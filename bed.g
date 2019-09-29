@@ -15,4 +15,5 @@ G30 P4 X300 Y150 Z-99999      ; probe near right leadscrew
 G30 P5 X300 Y80 Z-99999     ; probe front right
 G30 P6 X150 Y150 Z-99999 S2 ; Probe center and calibrate the 2 motors to achieve self leveling
 
-G28 				          ; Home
+G28 				; Home
+G29				; mesh bed leveling
