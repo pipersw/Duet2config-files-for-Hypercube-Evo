@@ -41,7 +41,7 @@ M574 X1 Y1 S1                            ; Set active high and disabled endstops
 ; Z-Probe
 M574 Z1 S2                               ; Set endstops controlled by probe
 M307 H3 A-1 C-1 D-1                      ; Disable heater 3 on PWM channel for BLTouch
-M558 P9 F100 H3 R0.5 T6000 A10 S0.03 B1  ; Set Z probe type to bltouch and the dive height + speeds
+M558 P9 F100 H3 R0.5 T2000 A10 S0.03 B1  ; Set Z probe type to bltouch and the dive height + speeds
 G31 P25 X0 Y80 Z0.90                     ; Set Z probe trigger value, offset and trigger height
 M557 X0:300 Y80:300 S20			             ; Set Z probe point or define probing grid
 
