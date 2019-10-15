@@ -43,13 +43,13 @@ M574 Z1 S2                               ; Set endstops controlled by probe
 M307 H3 A-1 C-1 D-1                      ; Disable heater 3 on PWM channel for BLTouch
 M558 P9 F100 H3 R0.5 T6000 A10 S0.03 B1  ; Set Z probe type to bltouch and the dive height + speeds
 G31 P25 X0 Y80 Z0.90                     ; Set Z probe trigger value, offset and trigger height
-M557 X0:300 Y80:300 S20			         ; Set Z probe point or define probing grid
+M557 X0:300 Y80:300 S20			             ; Set Z probe point or define probing grid
 
 ; Thermal Sensors
 M305 P0 T100000 B3950 R4700                  ; Set thermistor + ADC parameters for heater 0
 M305 P1 T100000 B4725 C7.060000e-8 R4700     ; Set thermistor + ADC parameters for heater 1
 M305 P101 S"Duet_TMC"                        ; temperature warning and overheat flags on the TMC2660 on Duet
-M305 P103 S"Left_Stepper" X2 T100000 B3950   ; Set thermistor + ADC parameters for left stepper
+M305 P103 S"Left_Stepper" X2 T100000 B3950   ; Set thermistor + ADC parameters for heater 2 - this is used to measure left XY stepper temperature
 
 ; Calibrate MCU Temperature
 M912 P0 S6.0                                 ; calibrate CPU temperature
