@@ -24,10 +24,10 @@ M569 P4 S0 F8                            ; Drive 4 goes forwards (E1/Z2)
 M584 X0 Y1 Z2 E3                         ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X160 Y160 Z1600 E830                 ; Set steps per mm with 1/16 and BMG extruder with 0.9° stepper on XY, 1.8° on Z, leadscrew pas 2mm
-M566 X600 Y600 Z50 E120                  ; jerk, Set maximum instantaneous speed changes (mm/min)
-M203 X12000 Y12000 Z400 E2500            ; Set maximum speeds (mm/min)
-M201 X1000 Y1000 Z40 E360                ; Set accelerations (mm/s^2)
-M906 X1000 Y1000 Z1400 E800 I30          ; Set peak motor currents (mA) and motor idle factor
+M566 X1000 Y1000 Z400 E120               ; jerk, Set maximum instantaneous speed changes (mm/min)
+M203 X12000 Y12000 Z400 E1200            ; Set maximum speeds (mm/min)
+M201 X2000 Y2000 Z300 E360               ; Set accelerations (mm/s^2)
+M906 X1200 Y1200 Z1400 E800 I30          ; Set peak motor currents (mA) and motor idle factor
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
@@ -45,11 +45,11 @@ G31 P25 X0 Y80 Z1.25                           ; Set Z probe trigger value, offs
 M557 X0:300 Y80:300 S20			       ; Set Z probe point or define probing grid
 
 ; Thermal Sensors
-M308 S0 P"bedtemp" Y"thermistor" T100000 B3950 R4700             ; configure sensor 0 as thermistor on pin bedtemp
+M308 S0 P"bedtemp" Y"thermistor" T100000 B3950 R4700              ; configure sensor 0 as thermistor on pin bedtemp
 M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.060000e-8 R4700  ; configure sensor 1 as thermistor on pin e0temp
-M308 S2 Y"drivers" A"DRIVERS"                                    ; configure sensor 2 as temperature warning and overheat flags on the TMC2660 on Duet
+M308 S2 Y"drivers" A"DRIVERS"                                     ; configure sensor 2 as temperature warning and overheat flags on the TMC2660 on Duet
 M308 S3 P"e1temp" Y"thermistor" T100000 B3950 A"Left_Stepper"     ; configure sensor 3 as thermistor on pin e1temp for left stepper
-M308 S4 Y"mcu-temp" A"MCU"     ; configure sensor 3 as thermistor on pin e1temp for left stepper
+M308 S4 Y"mcu-temp" A"MCU"                                        ; configure sensor 4 for cpu temperature
 
 ; Heaters
 M950 H0 C"bedheat" T0                          ; create bed heater output on bedheat and map it to sensor 0
@@ -65,15 +65,15 @@ M143 H0 S130                                 ; Set temperature limit for heater 
 M143 H1 S285                                 ; Set temperature limit for heater 1 to 285C
 
 ; Fans
-M950 F0 C"fan0" Q100                           ; create fan 0 on pin fan0 and set its frequency
-M106 P0 S0 H-1 C"PartCooling"                     ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
-M950 F1 C"fan1" Q100                           ; create fan 1 on pin fan1 and set its frequency
-M106 P1 H1 T45 C"HotEnd"              ; Set fan 1 value, PWM signal inversion and frequency. Thermostatic control is turned on
-M950 F2 C"fan2" Q100                           ; create fan 2 on pin fan2 and set its frequency
-M106 P2 H100:101:102 L0.0 X0.05 B0.5 T45:50 C"Duet"        ; set fan 2 value, turn on at 50% if the CPU temperature reaches 45C, and increase to full speed gradually as the temperature rises to 50C
+M950 F0 C"fan0" Q500                           ; create fan 0 on pin fan0 and set its frequency
+M106 P0 S0 H-1 C"PartCooling"                  ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
+M950 F1 C"fan1" Q500                           ; create fan 1 on pin fan1 and set its frequency
+M106 P1 H1 T45                       ; Set fan 1 value, PWM signal inversion and frequency. Thermostatic control is turned on
+M950 F2 C"fan2" Q500                           ; create fan 2 on pin fan2 and set its frequency
+M106 P2 H2:4 L0.0 X0.05 B0.5 T45:55    ; set fan 2 value, turn on at 50% if the CPU temperature reaches 45C, and increase to full speed gradually as the temperature rises to 55C
 
 ; Tools
-M563 P0 D0 H1                            ; Define tool 0
+M563 P0 D0 H1 S"HotEnd"                  ; Define tool 0
 G10 P0 X0 Y0 Z0                          ; Set tool 0 axis offsets
 G10 P0 R0 S0                             ; Set initial tool 0 active and standby temperatures to 0C
 
@@ -95,7 +95,6 @@ T0                                       ; Select first tool
 M564 H0                                  ; allow movement of axes that have not been homed
 
 ; workaround to show ATX button
-M80                                     ; 24V PSU ON
 M81                                     ; 24V PSU OFF
 
 M501                                    ; Read stored parameters from EEPROM
