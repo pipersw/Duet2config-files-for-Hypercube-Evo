@@ -1,3 +1,0 @@
-;Light up LED in enclosure
-M80		; 24V power supply on
-M42 P2 S10	; LED at 5% PWM on heater 1
