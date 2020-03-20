@@ -20,14 +20,14 @@ M569 P0 S0 F8                            ; Drive 0 goes forwards (X)
 M569 P1 S0 F8                            ; Drive 1 goes forwards (Y)
 M569 P2 S0 F8                            ; Drive 2 goes forwards (Z)
 M569 P3 S1 F4                            ; Drive 3 goes backwards (E0)
-M569 P4 S0 F8                            ; Drive 4 goes forwards (E1/Z2)
+M569 P4 S0 F4                            ; Drive 4 goes forwards (E1)
 M584 X0 Y1 Z2 E3                         ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X160 Y160 Z1600 E830                 ; Set steps per mm with 1/16 and BMG extruder with 0.9° stepper on XY, 1.8° on Z, leadscrew pas 2mm
 M566 X720 Y720 Z24 E400                  ; jerk, Set maximum instantaneous speed changes (mm/min)
 M203 X18000 Y18000 Z300 E3600            ; Set maximum speeds (mm/min)
 M201 X1500 Y1500 Z250 E3000              ; Set accelerations (mm/s^2)
-M906 X800 Y800 Z1400 E800 I30            ; Set peak motor currents (mA) and motor idle factor
+M906 X800 Y800 Z1600 E800 I30            ; Set peak motor currents (mA) and motor idle factor
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
@@ -40,22 +40,22 @@ M574 Z1 S2                                     ; configure Z-probe endstop for l
 
 ; Z-Probe
 M950 S0 C"exp.8"                                                 ; create servo 0 pin 8 for BLTouch
-M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T10000 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
-G31 P25 X0 Y80 Z2.30                                             ; Set Z probe trigger value, offset and trigger height
+M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T10000 A10 S0.03 B0 ; set Z probe type to bltouch and the dive height + speeds, bed on
+G31 P25 X0 Y80 Z2.20                                             ; Set Z probe trigger value, offset and trigger height
 M557 X0:300 Y80:300 S20			                                 ; Set Z probe point or define probing grid
 
 ; Thermal Sensors
 M308 S0 P"bedtemp" Y"thermistor" T100000 B3950              ; configure sensor 0 as thermistor on pin bedtemp
 M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.060000e-8  ; configure sensor 1 as thermistor on pin e0temp
-M308 S2 Y"drivers" A"DRIVERS"                                     ; configure sensor 2 as temperature warning and overheat flags on the TMC2660 on Duet
+M308 S2 Y"drivers" A"DRIVERS"                               ; configure sensor 2 as temperature warning and overheat flags on the TMC2660 on Duet
 M308 S3 P"e1temp" Y"thermistor" T10000 B3950 A"Water"       ; configure sensor 3 as thermistor on pin e1temp for temp water
-M308 S4 Y"mcu-temp" A"MCU"                                        ; configure sensor 4 for cpu temperature
+M308 S4 Y"mcu-temp" A"MCU"                                  ; configure sensor 4 for cpu temperature
 
 ; Heaters
 M950 H0 C"bedheat" T0                          ; create bed heater output on bedheat and map it to sensor 0
 M307 H0 A167.0 C982.2 D5.1 S1.00 V23.1 B0      ; Disable bang-bang mode for the bed heater and set PWM limit
 M950 H1 C"e0heat" T1                           ; create nozzle heater output on e0heat and map it to sensor 1
-M307 H1 A771.7 C282.9 D6.2 S1.00 V24.0 B0   ; Disable bang-bang mode for the nozzle heater and set PWM limit
+M307 H1 A771.7 C282.9 D6.2 S1.00 V24.0 B0      ; Disable bang-bang mode for the nozzle heater and set PWM limit
 
 ; Calibrate MCU Temperature
 M912 P0 S6.0                                 ; calibrate CPU temperature
@@ -68,10 +68,8 @@ M143 H1 S285                                 ; Set temperature limit for heater 
 M950 F0 C"fan0" Q100                           ; create fan 0 on pin fan0 and set its frequency for tool 0
 M106 P0 S0 H-1                                 ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
 M950 F1 C"fan1+^exp.pb6" Q100                  ; create fan 1 on pin fan1 and set its frequency
-;M106 P1 H1:3 T40                               ; Set fan 1/pump value, turned on if hotend or water reaches 40C
-M106 P1 S0 H-1 C"Pump"                         ; Set fan 1/pump value, PWM signal inversion and frequency. Thermostatic control is turned off
-M950 F2 C"fan2" Q100                           ; create fan 2 on pin fan2 and set its frequency
-M106 P2 H2:4 L80 B0.5 T45:65                   ; set fan 2 value, turn on at 50% if the CPU temperature reaches 45C, and increase to full speed gradually as the temperature rises to 65C
+;M106 P1 H1:2:3 T30:45                               ; Set fan 1/pump value, low speed 30%, turned 100% if hotend or water reaches 45C or drivers overheat
+M106 P1 S1.0 H-1 C"Pump"                         ; Set fan 1/pump value, PWM signal inversion and frequency. Thermostatic control is turned off
 
 ; Tools
 M563 P0 D0 H1 S"HotEnd"                  ; Define tool 0
@@ -86,9 +84,6 @@ M140 S0 R0                              ; Set initial bed active and standby tem
 
 ; Automatic saving after power loss is enabled
 M911 S21.0 R23.0 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"
-
-; Led strip
-M950 P2 C"e1heat"                        ; create GPIO port 2 attached to heater 1 pin on expansion connector PWM channel for LED strip
 
 ; firmware retractation (activate in slicer)
 M207 S1.2 F2100 Z0.075                   ; retract 1.2mm 35mm/s

@@ -3,10 +3,10 @@
 ;
 M80                     ; power on 24V power supply
 G4 S1                   ; wait 1s
-M42 P2 S255             ; power on led
+
 M280 P3 S160 I1         ; Alarm Release and Push-Pin UP
 G91                     ; relative positioning
-M906 X400 Y400 Z600    ; Set peak motor currents (mA)
+M906 X400 Y400 Z800    ; Set peak motor currents (mA)
 G1 Z5 F1000 H2          ; lift Z relative to current position
 G1 H1 X-335 Y-315 F4000 ; move quickly to X or Y endstop and stop there (first pass)
 G1 H1 X-335             ; home X axis
