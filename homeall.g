@@ -6,7 +6,6 @@ G4 S1                   ; wait 1s
 
 M280 P3 S160 I1         ; Alarm Release and Push-Pin UP
 G91                     ; relative positioning
-M906 X400 Y400 Z800    ; Set peak motor currents (mA)
 G1 Z5 F1000 H2          ; lift Z relative to current position
 G1 H1 X-335 Y-315 F4000 ; move quickly to X or Y endstop and stop there (first pass)
 G1 H1 X-335             ; home X axis
@@ -20,6 +19,6 @@ M558 A1 F300		    ; Set single probing at faster feed rate
 G30 			        ; Do a single probe to home Z axis
 M558 A10 F100		    ; Set detailed probing at slower feed rate
 G30                     ; Do a single probe to home Z axis
-M906 X800 Y800 Z1600    ; Set peak motor currents (mA)
+
 
 
