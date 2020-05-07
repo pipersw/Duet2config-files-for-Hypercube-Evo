@@ -1,3 +1,3 @@
 # Duet2Config-for-corexy Hypercube Evolution with NGEN upgrade
-with BLTouch, Led strip on heater 1, single Z motor
+with BLTouch, double Z motors
 auto bed levelling with bltouch
