@@ -1,0 +1,8 @@
+M80          ; power on power
+G10 P0 S200  ; set extruder 0 to 200 degres
+M116 H1      ; wait temperature to be reached on extruder
+G28 XY       ; home X and Y
+M291 P"insert filament in extruder" S1
+G92 E0       ;Reset the position of the extruder
+G1 E610 F2000 ; extrude 610mm at 100mm/s
+M400         ; Wait for command to finish

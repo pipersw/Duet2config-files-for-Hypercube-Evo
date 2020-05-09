@@ -42,7 +42,7 @@ M574 Y1 S1 P"ystop"                            ; configure active-high endstop f
 M574 Z1 S2                                     ; configure Z-probe endstop for low end on Z
 
 ; run-out filament detector
-M591 D0 P2 C"e0stop" S1                         ; sensor for extruder 0, simple sensor (low signal when filament present) on E0 endstop
+M591 D0 P3 C"e0stop" S1 R70:130 L25.4 E3.0 ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, enabled, sensitivity 25.4mm.rev, 70% to 130% tolerance, 3mm detection length
 
 ; Z-Probe
 M950 S0 C"exp.8"                                                 ; create servo 0 pin 8 for BLTouch
@@ -75,7 +75,7 @@ M143 H1 S285                                 ; Set temperature limit for heater 
 M950 F0 C"fan0" Q100                           ; create fan 0 on pin fan0 and set its frequency for tool 0
 M106 P0 S0 H-1                                 ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
 M950 F1 C"!fan1+^exp.pb6" Q100                 ; create fan 1 on pin fan1 and set its frequency
-M106 P1 T40 S1.0 H1 C"Pump"                    ; Set fan 1/pump value. Thermostatic control is turned on
+M106 P1 T40 S0.5 H1 C"Pump"                    ; Set fan 1/pump value to 50% when temp > 40 deg
 
 ; Tools
 M563 P0 D0 H1 S"HotEnd"                  ; Define tool 0
@@ -94,8 +94,8 @@ M911 S21.0 R23.0 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"
 
 ; Miscellaneous
 M564 H0                                  ; allow movement of axes that have not been homed
-M221 S90 D0                              ; Set extrude factor override percentage 90%
-M376 H4  ; Set bed compensation taper to 4mm
+M221 S85 D0                              ; Set extrude factor override percentage 85%
+M376 H4                                  ; Set bed compensation taper to 4mm
 
 ; workaround to show ATX button
 M81                                     ; 24V PSU OFF
