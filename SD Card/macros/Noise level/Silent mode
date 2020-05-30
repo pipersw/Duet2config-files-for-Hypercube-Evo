@@ -1,2 +1,4 @@
 M203 X3000 Y3000 ; Set maximum feedrate speeds (mm/min)
 M201 X500 Y500   ; Set accelerations (mm/s^2)
+M220 S50          ; Set speed factor override 50%
+M906 X800 Y800 Z1000 E800 I30          ; Set peak motor currents (mA) and motor idle factor

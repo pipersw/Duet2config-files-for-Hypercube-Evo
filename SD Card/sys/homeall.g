@@ -2,7 +2,7 @@
 ; called to home all axes
 ;
 M80                     ; power on 24V power supply
-G4 S1                   ; wait 1s
+G4 P1000                ; wait 1000ms
 
 
 G91                     ; relative positioning

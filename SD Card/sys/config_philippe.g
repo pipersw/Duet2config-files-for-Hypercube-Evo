@@ -42,12 +42,12 @@ M574 Y1 S1 P"ystop"                            ; configure active-high endstop f
 M574 Z1 S2                                     ; configure Z-probe endstop for low end on Z
 
 ; run-out filament detector
-M591 D0 P3 C"e0stop" S1 R70:130 L25.4 E3.0 ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, enabled, sensitivity 25.4mm.rev, 70% to 130% tolerance, 3mm detection length
+M591 D0 P3 C"e0stop" S1 R60:140 L25.5 E3.0 ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, enabled, sensitivity 25.5mm.rev, 60% to 140% tolerance, 3mm detection length
 
 ; Z-Probe
 M950 S0 C"exp.8"                                                 ; create servo 0 pin 8 for BLTouch
 M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T3000 A10 S0.03 B0 ; set Z probe type to bltouch and the dive height + speeds, bed on
-G31 P25 X0 Y80 Z1.80                                             ; Set Z probe trigger value, offset and trigger height
+G31 P25 X0 Y80 Z2.05                                             ; Set Z probe trigger value, offset and trigger height
 M557 X0:300 Y80:310 P20			                                 ; Set Z probe point or define probing grid 20x20 points per axis
 
 ; Thermal Sensors
@@ -75,7 +75,7 @@ M143 H1 S285                                 ; Set temperature limit for heater 
 M950 F0 C"fan0" Q100                           ; create fan 0 on pin fan0 and set its frequency for tool 0
 M106 P0 S0 H-1                                 ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
 M950 F1 C"!fan1+^exp.pb6" Q100                 ; create fan 1 on pin fan1 and set its frequency
-M106 P1 T40 S0.5 H1 C"Pump"                    ; Set fan 1/pump value to 50% when temp > 40 deg
+M106 P1 T45 S1.0 H1 C"Pump"                    ; Set fan 1/pump value to 100% when temp > 45 deg
 
 ; Tools
 M563 P0 D0 H1 S"HotEnd"                  ; Define tool 0
@@ -96,6 +96,7 @@ M911 S21.0 R23.0 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"
 M564 H0                                  ; allow movement of axes that have not been homed
 M221 S85 D0                              ; Set extrude factor override percentage 85%
 M376 H4                                  ; Set bed compensation taper to 4mm
+;M404 N1.72 D0.4                          ; Filament width 1.72mm and nozzle diameter 0.4mm
 
 ; workaround to show ATX button
 M81                                     ; 24V PSU OFF
