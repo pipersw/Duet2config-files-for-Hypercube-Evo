@@ -9,8 +9,8 @@ M83                                      ; ...but relative extruder moves
 M669 K1                                  ; switch to CoreXY mode
 
 ; Network
-M550 P"Imprimante"                        ; Set machine name
-M552 S1                                  ; Enable network
+M550 P"Hypercube"                        ; Set machine name
+M552 S1 P192.168.2.25                    ; Enable network
 M586 P0 S1                               ; Enable HTTP
 M586 P1 S1                               ; Enable FTP
 M586 P2 S0                               ; Disable Telnet
@@ -27,7 +27,7 @@ M92 X160 Y160 Z1600 E821                 ; Set steps per mm with 1/16 and BMG ex
 M566 X720 Y720 Z20 E400                  ; jerk, Set maximum instantaneous speed changes (mm/min)
 M203 X18000 Y18000 Z300 E3600            ; Set maximum speeds (mm/min)
 M201 X1000 Y1000 Z100 E3000              ; Set accelerations (mm/s^2)
-M906 X1400 Y1400 Z1400 E1100 I30          ; Set peak motor currents (mA) and motor idle factor
+M906 X1400 Y1400 Z1400 E1100 I30         ; Set peak motor currents to 85% (mA) and motor idle factor
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
