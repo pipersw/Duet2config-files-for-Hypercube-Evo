@@ -1,0 +1,4 @@
+2019-09-26 17:08:45 Event logging started
+2019-09-26 17:08:46 HTTP client 192.168.1.116 disconnected
+2019-09-26 17:08:48 HTTP client 192.168.1.116 login succeeded
+2019-09-26 17:09:03 Event logging stopped

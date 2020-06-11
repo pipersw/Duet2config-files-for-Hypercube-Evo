@@ -1,0 +1,2 @@
+2019-09-26 17:09:03 Event logging started
+2019-09-26 17:10:49 Warning: VIN under-voltage event (9.5V)
