@@ -12,7 +12,7 @@ M669 K1                                        ; switch to CoreXY mode
 ; Network
 M552 S1                                        ; enable network
 M586 P0 S1                                     ; enable HTTP
-M586 P1 S0                                     ; disable FTP
+M586 P1 S1                                     ; enable FTP
 M586 P2 S0                                     ; disable Telnet
 
 ; Drives
@@ -31,7 +31,7 @@ M906 X1400 Y1400 Z1400 E1100 I30         ; Set peak motor currents to 85% (mA) a
 M84 S30                                        ; Set idle timeout
 
 ; Axis Limits
-M208 X0:300 Y-3:270 Z0:190               ; Set axis minima maxima
+M208 X0:285 Y-3:265 Z0:190               ; Set axis minima maxima
 
 ; define the X and Y coordinates of the adjusting screws
 M671 X-10:176.5:310 Y320:-0.1:320 P0.5   ; adjusting screws at rear left, front middle and rear right, thread pitch 0.5mm
@@ -46,16 +46,16 @@ M591 D0 P3 C"e0stop" S1 R60:140 L25.5 E3.0 ; Duet3D rotating magnet sensor for e
 
 ; Z-Probe
 M950 S0 C"exp.8"                                                 ; create servo 0 pin 8 for BLTouch
-M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T3000 A10 S0.03 B0 ; set Z probe type to bltouch and the dive height + speeds, bed on
-G31 P25 X0 Y80 Z2.05                                             ; Set Z probe trigger value, offset and trigger height
-M557 X0:300 Y80:310 P20			                                 ; Set Z probe point or define probing grid 20x20 points per axis
+M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T8000 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
+G31 P25 X37 Y0 Z1.5                                             ; Set Z probe trigger value, offset and trigger height
+M557 X40:300 Y10:260 P20			                                 ; Set Z probe point or define probing grid 20x20 points per axis
 
 ; Thermal Sensors
 M308 S0 P"bedtemp" Y"thermistor" T100000 B3950              ; configure sensor 0 as thermistor on pin bedtemp
 M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.060000e-8  ; configure sensor 1 as thermistor on pin e0temp
-M308 S2 Y"drivers" A"DRIVERS"                               ; configure sensor 2 as temperature warning and overheat flags on the TMC2660 on Duet
-M308 S3 P"e1temp" Y"thermistor" T10000 B3950 A"Water"       ; configure sensor 3 as thermistor on pin e1temp for temp water
-M308 S4 Y"mcu-temp" A"MCU"                                  ; configure sensor 4 for cpu temperature
+M308 S2 Y"drivers" A"TMC2660"                               ; configure sensor 2 as temperature warning and overheat flags on the TMC2660 on Duet
+M308 S3 P"e1temp" Y"thermistor" T10000 B3950 A"Eau"         ; configure sensor 3 as thermistor on pin e1temp for temp water
+M308 S4 Y"mcu-temp" A"MCU"                                         ; configure sensor 4 for cpu temperature
 
 ; Heaters
 M950 H0 C"bedheat" T0                          ; create bed heater output on bedheat and map it to sensor 0
@@ -75,7 +75,7 @@ M143 H1 S285                                 ; Set temperature limit for heater 
 M950 F0 C"fan0" Q100                           ; create fan 0 on pin fan0 and set its frequency for tool 0
 M106 P0 S0 H-1                                 ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
 M950 F1 C"!fan1+^exp.pb6" Q100                 ; create fan 1 on pin fan1 and set its frequency
-M106 P1 T45 S1.0 H1 C"Pump"                    ; Set fan 1/pump value to 100% when temp > 45 deg
+M106 P1 S1.0 H-1 C"Pump"                    ; Set fan 1/pump value to 100%
 
 ; Tools
 M563 P0 D0 H1 S"HotEnd"                  ; Define tool 0
@@ -94,9 +94,8 @@ M911 S21.0 R23.0 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"
 
 ; Miscellaneous
 M564 H0                                  ; allow movement of axes that have not been homed
-M221 S85 D0                              ; Set extrude factor override percentage 85%
+M221 S90 D0                              ; Set extrude factor override percentage 90%
 M376 H4                                  ; Set bed compensation taper to 4mm
-;M404 N1.72 D0.4                          ; Filament width 1.72mm and nozzle diameter 0.4mm
 
 ; workaround to show ATX button
 M81                                     ; 24V PSU OFF
