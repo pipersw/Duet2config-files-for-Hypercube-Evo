@@ -14,6 +14,7 @@ M552 S1                                        ; enable network
 M586 P0 S1                                     ; enable HTTP
 M586 P1 S1                                     ; enable FTP
 M586 P2 S0                                     ; disable Telnet
+;M551 P"celianou" ; set password
 
 ; Drives
 M569 P0 S0 F8                            ; Drive 0 goes forwards (X)
@@ -23,11 +24,11 @@ M569 P3 S1 F4                            ; Drive 3 goes backwards (E0)
 M569 P4 S0 F4                            ; Drive 4 goes forwards (E1)
 M584 X0 Y1 Z2 E3                         ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
-M92 X160 Y160 Z1600 E821                 ; Set steps per mm with 1/16 and BMG extruder with 0.9° stepper on XY, 1.8° on Z, leadscrew pas 2mm
+M92 X160 Y160 Z1600 E412                 ; Set steps per mm with 1/16 and BMG extruder with 1.8° stepper on XY, 1.8° on Z, leadscrew pas 2mm
 M566 X720 Y720 Z20 E400                  ; jerk, Set maximum instantaneous speed changes (mm/min)
 M203 X18000 Y18000 Z300 E3600            ; Set maximum speeds (mm/min)
 M201 X1000 Y1000 Z100 E3000              ; Set accelerations (mm/s^2)
-M906 X1400 Y1400 Z1400 E1100 I30         ; Set peak motor currents to 85% (mA) and motor idle factor
+M906 X1400 Y1400 Z1400 E600 I30         ; Set peak motor currents to 85% (mA) and motor idle factor
 M84 S30                                        ; Set idle timeout
 
 ; Axis Limits
@@ -46,9 +47,9 @@ M591 D0 P3 C"e0stop" S1 R60:140 L25.5 E3.0 ; Duet3D rotating magnet sensor for e
 
 ; Z-Probe
 M950 S0 C"exp.8"                                                 ; create servo 0 pin 8 for BLTouch
-M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T8000 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
-G31 P25 X37 Y0 Z1.5                                             ; Set Z probe trigger value, offset and trigger height
-M557 X40:300 Y10:260 P20			                                 ; Set Z probe point or define probing grid 20x20 points per axis
+M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T2000 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
+G31 P25 X37 Y0 Z3.35                                             ; Set Z probe trigger value, offset and trigger height
+M557 X40:300 Y10:260 P20			                             ; Set Z probe point or define probing grid 20x20 points per axis
 
 ; Thermal Sensors
 M308 S0 P"bedtemp" Y"thermistor" T100000 B3950              ; configure sensor 0 as thermistor on pin bedtemp
@@ -75,7 +76,7 @@ M143 H1 S285                                 ; Set temperature limit for heater 
 M950 F0 C"fan0" Q100                           ; create fan 0 on pin fan0 and set its frequency for tool 0
 M106 P0 S0 H-1                                 ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
 M950 F1 C"!fan1+^exp.pb6" Q100                 ; create fan 1 on pin fan1 and set its frequency
-M106 P1 S1.0 H-1 C"Pump"                    ; Set fan 1/pump value to 100%
+M106 P1 S1.0 T45 H1 C"Pump"                    ; Set fan 1/pump value to 100% when temp >45C
 
 ; Tools
 M563 P0 D0 H1 S"HotEnd"                  ; Define tool 0
@@ -84,10 +85,10 @@ G10 P0 R0 S0                             ; Set initial tool 0 active and standby
 T0                                       ; Select first tool
 
 ; Pressure Advance
-M572 D0 S0.3                             ; enable pressure advance
+M572 D0 S0.5                             ; enable pressure advance
 
 ; firmware retractation (activate in slicer)
-M207 S3.0 F1500 Z0.075                   ; retract 3mm 25mm/s z lift 0.075mm
+M207 S5.0 F2100 Z0.1                   ; retract 5mm 35mm/s z lift 0.1mm
 
 ; Automatic saving after power loss is enabled
 M911 S21.0 R23.0 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"
