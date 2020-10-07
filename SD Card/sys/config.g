@@ -43,12 +43,12 @@ M574 Y1 S1 P"ystop"                            ; configure active-high endstop f
 M574 Z1 S2                                     ; configure Z-probe endstop for low end on Z
 
 ; run-out filament detector
-M591 D0 P3 C"e0stop" S1 R60:140 L25.5 E3.0 ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, enabled, sensitivity 25.5mm.rev, 60% to 140% tolerance, 3mm detection length
+M591 D0 P3 C"e0stop" S1 R20:200 L25.5 E20.0 ; Duet3D rotating magnet sensor for extruder drive 0 is connected to E0 endstop input, enabled, sensitivity 25.5mm.rev, 20% to 200% tolerance, 20mm detection length
 
 ; Z-Probe
 M950 S0 C"exp.8"                                                 ; create servo 0 pin 8 for BLTouch
 M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T2000 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
-G31 P25 X37 Y0 Z3.35                                             ; Set Z probe trigger value, offset and trigger height
+G31 P25 X37 Y0 Z3.189                                             ; Set Z probe trigger value, offset and trigger height
 M557 X40:300 Y10:260 P20			                             ; Set Z probe point or define probing grid 20x20 points per axis
 
 ; Thermal Sensors
@@ -85,10 +85,10 @@ G10 P0 R0 S0                             ; Set initial tool 0 active and standby
 T0                                       ; Select first tool
 
 ; Pressure Advance
-M572 D0 S0.5                             ; enable pressure advance
+;M572 D0 S0.5                             ; enable pressure advance
 
 ; firmware retractation (activate in slicer)
-M207 S5.0 F2100 Z0.1                   ; retract 5mm 35mm/s z lift 0.1mm
+M207 S7 F2100 Z0.1                   ; retract 7mm 35mm/s z lift 0.1mm
 
 ; Automatic saving after power loss is enabled
 M911 S21.0 R23.0 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"
