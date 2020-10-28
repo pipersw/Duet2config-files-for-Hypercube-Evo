@@ -24,7 +24,7 @@ M569 P3 S1 F4                            ; Drive 3 goes backwards (E0)
 M569 P4 S0 F4                            ; Drive 4 goes forwards (E1)
 M584 X0 Y1 Z2 E3                         ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
-M92 X160 Y160 Z1600 E412                 ; Set steps per mm with 1/16 and BMG extruder with 1.8° stepper on XY, 1.8° on Z, leadscrew pas 2mm
+M92 X160 Y160 Z1600 E415                 ; Set steps per mm with 1/16 and BMG extruder with 1.8° stepper on XY, 1.8° on Z, leadscrew pas 2mm
 M566 X720 Y720 Z20 E400                  ; jerk, Set maximum instantaneous speed changes (mm/min)
 M203 X18000 Y18000 Z300 E3600            ; Set maximum speeds (mm/min)
 M201 X1000 Y1000 Z100 E3000              ; Set accelerations (mm/s^2)
@@ -48,7 +48,7 @@ M591 D0 P3 C"e0stop" S1 R20:200 L25.5 E20.0 ; Duet3D rotating magnet sensor for 
 ; Z-Probe
 M950 S0 C"exp.8"                                                 ; create servo 0 pin 8 for BLTouch
 M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T2000 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
-G31 P25 X37 Y0 Z3.189                                             ; Set Z probe trigger value, offset and trigger height
+G31 P25 X37 Y0 Z3.145                                             ; Set Z probe trigger value, offset and trigger height
 M557 X40:300 Y10:260 P20			                             ; Set Z probe point or define probing grid 20x20 points per axis
 
 ; Thermal Sensors
@@ -85,20 +85,19 @@ G10 P0 R0 S0                             ; Set initial tool 0 active and standby
 T0                                       ; Select first tool
 
 ; Pressure Advance
-;M572 D0 S0.5                             ; enable pressure advance
+M572 D0 S0.8                             ; enable pressure advance 0.8mm
 
 ; firmware retractation (activate in slicer)
-M207 S7 F2100 Z0.1                   ; retract 7mm 35mm/s z lift 0.1mm
+M207 S3.8 F1800 Z0.5                   ; retract 3mm 30mm/s z lift 0.5mm
 
 ; Automatic saving after power loss is enabled
 M911 S21.0 R23.0 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"
 
 ; Miscellaneous
 M564 H0                                  ; allow movement of axes that have not been homed
-M221 S90 D0                              ; Set extrude factor override percentage 90%
 M376 H4                                  ; Set bed compensation taper to 4mm
 
 ; workaround to show ATX button
-M81                                     ; 24V PSU OFF
+M81 S1                                  ; 24V PSU OFF
 
 M501                                    ; Read stored parameters from EEPROM
