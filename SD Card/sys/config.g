@@ -1,3 +1,49 @@
+
+Hypercube
+Send code...
+Status
+Idle
+Mode: FFF
+Tool Position
+X
+110.0
+Y
+145.0
+Z
+8.25
+Extruder Drives
+Drive 0
+0.0
+Speeds
+Requested Speed
+0 mm/s
+Top Speed
+0 mm/s
+Sensors
+Vin
+24.3 V
+MCU Temperature
+43.4 C
+Fan RPM
+0
+Z-Probe
+0
+ Tools
+ Extra
+ Control All
+Tool	Heater	Current	Active	Standby
+HotEnd
+T0 - PLA	Heater 1
+active	26.8 C	
+0
+0
+Bed	Heater 0
+active	26.3 C	
+0
+0
+Temperature Chart
+System Directory
+0:/sys/config.g
 ; Configuration file for Duet WiFi (firmware version 3)
 ; executed by the firmware on start-up
 ;
@@ -47,16 +93,19 @@ M591 D0 P3 C"e0stop" S1 R20:200 L25.5 E20.0 ; Duet3D rotating magnet sensor for 
 
 ; Z-Probe
 M950 S0 C"exp.8"                                                 ; create servo 0 pin 8 for BLTouch
-M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T2000 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
-G31 P25 X37 Y0 Z3.145                                             ; Set Z probe trigger value, offset and trigger height
-M557 X40:300 Y10:260 P20			                             ; Set Z probe point or define probing grid 20x20 points per axis
+M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T3500 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
+G31 P25 X37 Y0 Z3.255                                             ; Set Z probe trigger value, offset and trigger height
+;M557 X40:300 Y10:260 P20			                             ; Set Z probe point or define probing grid 20x20 points per axis
+M557 X40:300 Y10:260 P5			                             ; Set Z probe point or define probing grid 5x5 points per axis
+
 
 ; Thermal Sensors
 M308 S0 P"bedtemp" Y"thermistor" T100000 B3950              ; configure sensor 0 as thermistor on pin bedtemp
 M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.060000e-8  ; configure sensor 1 as thermistor on pin e0temp
 M308 S2 Y"drivers" A"TMC2660"                               ; configure sensor 2 as temperature warning and overheat flags on the TMC2660 on Duet
-M308 S3 P"e1temp" Y"thermistor" T10000 B3950 A"Eau"         ; configure sensor 3 as thermistor on pin e1temp for temp water
+M308 S3 P"e1temp" Y"thermistor" T10000 B3950 A"Eau"         ; configure sensor 3 as thermistor on pin e1temp for temp water 
 M308 S4 Y"mcu-temp" A"MCU"                                         ; configure sensor 4 for cpu temperature
+
 
 ; Heaters
 M950 H0 C"bedheat" T0                          ; create bed heater output on bedheat and map it to sensor 0
@@ -69,7 +118,7 @@ M307 H1 A771.7 C282.9 D6.2 S1.00 V24.0 B0      ; Disable bang-bang mode for the 
 M912 P0 S6.0                                 
 
 ; Max temp Protection
-M143 H0 S130                                 ; Set temperature limit for heater 0 to 130C
+M143 H0 S140                                 ; Set temperature limit for heater 0 to 140C
 M143 H1 S285                                 ; Set temperature limit for heater 1 to 285C
 
 ; Fans
@@ -88,7 +137,7 @@ T0                                       ; Select first tool
 M572 D0 S0.8                             ; enable pressure advance 0.8mm
 
 ; firmware retractation (activate in slicer)
-M207 S3.8 F1800 Z0.5                   ; retract 3mm 30mm/s z lift 0.5mm
+M207 S4.5 F1500 Z0.5                   ; retract 4.5mm 25mm/s z lift 0.5mm
 
 ; Automatic saving after power loss is enabled
 M911 S21.0 R23.0 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"
@@ -101,3 +150,4 @@ M376 H4                                  ; Set bed compensation taper to 4mm
 M81 S1                                  ; 24V PSU OFF
 
 M501                                    ; Read stored parameters from EEPROM
+

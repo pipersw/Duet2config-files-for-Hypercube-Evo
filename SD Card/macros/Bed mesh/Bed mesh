@@ -1,14 +1,14 @@
 M80
 G4 P1000
-M140 S50
+M140 S68
 G28
 G29
 G29 S3 P"heightmap_pla.csv"
-M140 S70
+M140 S79
 G28
 G29
 G29 S3 P"heightmap_petg.csv"
-M140 S100
+M140 S112
 G28
 G29
 G29 S3 P"heightmap_abs.csv"
