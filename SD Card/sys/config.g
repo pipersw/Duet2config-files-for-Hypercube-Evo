@@ -1,49 +1,3 @@
-
-Hypercube
-Send code...
-Status
-Idle
-Mode: FFF
-Tool Position
-X
-110.0
-Y
-145.0
-Z
-8.25
-Extruder Drives
-Drive 0
-0.0
-Speeds
-Requested Speed
-0 mm/s
-Top Speed
-0 mm/s
-Sensors
-Vin
-24.3 V
-MCU Temperature
-43.4 C
-Fan RPM
-0
-Z-Probe
-0
- Tools
- Extra
- Control All
-Tool	Heater	Current	Active	Standby
-HotEnd
-T0 - PLA	Heater 1
-active	26.8 C	
-0
-0
-Bed	Heater 0
-active	26.3 C	
-0
-0
-Temperature Chart
-System Directory
-0:/sys/config.g
 ; Configuration file for Duet WiFi (firmware version 3)
 ; executed by the firmware on start-up
 ;
@@ -94,7 +48,7 @@ M591 D0 P3 C"e0stop" S1 R20:200 L25.5 E20.0 ; Duet3D rotating magnet sensor for 
 ; Z-Probe
 M950 S0 C"exp.8"                                                 ; create servo 0 pin 8 for BLTouch
 M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T3500 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
-G31 P25 X37 Y0 Z3.255                                             ; Set Z probe trigger value, offset and trigger height
+G31 P25 X37 Y0 Z3.400                                             ; Set Z probe trigger value, offset and trigger height
 ;M557 X40:300 Y10:260 P20			                             ; Set Z probe point or define probing grid 20x20 points per axis
 M557 X40:300 Y10:260 P5			                             ; Set Z probe point or define probing grid 5x5 points per axis
 
@@ -130,7 +84,7 @@ M106 P1 S1.0 T45 H1 C"Pump"                    ; Set fan 1/pump value to 100% wh
 ; Tools
 M563 P0 D0 H1 S"HotEnd"                  ; Define tool 0
 G10 P0 X0 Y0 Z0                          ; Set tool 0 axis offsets
-G10 P0 R0 S0                             ; Set initial tool 0 active and standby temperatures to 0C
+G10 P0 R0 S160                           ; Set initial tool 0 active and standby temperatures to 160C
 T0                                       ; Select first tool
 
 ; Pressure Advance
@@ -150,4 +104,3 @@ M376 H4                                  ; Set bed compensation taper to 4mm
 M81 S1                                  ; 24V PSU OFF
 
 M501                                    ; Read stored parameters from EEPROM
-
