@@ -29,7 +29,7 @@ M566 X720 Y720 Z20 E400                  ; jerk, Set maximum instantaneous speed
 M203 X18000 Y18000 Z300 E3600            ; Set maximum speeds (mm/min)
 M201 X1000 Y1000 Z100 E3000              ; Set accelerations (mm/s^2)
 ;M906 X1400 Y1400 Z1400 E600 I30         ; Set peak motor currents to 85% (mA) and motor idle factor
-M906 X800 Y800 Z1000 E600 I30            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
+M906 X960 Y960 Z9600 E600 I30            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
