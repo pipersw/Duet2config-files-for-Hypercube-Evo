@@ -28,8 +28,9 @@ M92 X160 Y160 Z1600 E415                 ; Set steps per mm with 1/16 and BMG ex
 M566 X720 Y720 Z20 E400                  ; jerk, Set maximum instantaneous speed changes (mm/min)
 M203 X18000 Y18000 Z300 E3600            ; Set maximum speeds (mm/min)
 M201 X1000 Y1000 Z100 E3000              ; Set accelerations (mm/s^2)
-M906 X1400 Y1400 Z1400 E600 I30         ; Set peak motor currents to 85% (mA) and motor idle factor
-M84 S30                                        ; Set idle timeout
+;M906 X1400 Y1400 Z1400 E600 I30         ; Set peak motor currents to 85% (mA) and motor idle factor
+M906 X800 Y800 Z1000 E600 I30            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
+M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
 M208 X0:285 Y-3:265 Z0:190               ; Set axis minima maxima
@@ -50,7 +51,7 @@ M950 S0 C"exp.8"                                                 ; create servo 
 M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T3500 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
 G31 P25 X37 Y0 Z3.400                                             ; Set Z probe trigger value, offset and trigger height
 ;M557 X40:300 Y10:260 P20			                             ; Set Z probe point or define probing grid 20x20 points per axis
-M557 X40:300 Y10:260 P3			                             ; Set Z probe point or define probing grid 3x3 points per axis
+M557 X40:300 Y10:260 P5			                             ; Set Z probe point or define probing grid 5x5 points per axis
 
 
 ; Thermal Sensors
