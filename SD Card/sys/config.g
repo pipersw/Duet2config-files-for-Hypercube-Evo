@@ -25,11 +25,12 @@ M569 P4 S0 F4                            ; Drive 4 goes forwards (E1)
 M584 X0 Y1 Z2 E3                         ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X160 Y160 Z1600 E415                 ; Set steps per mm with 1/16 and BMG extruder with 1.8° stepper on XY, 1.8° on Z, leadscrew pas 2mm
-M566 X720 Y720 Z20 E400                  ; jerk, Set maximum instantaneous speed changes (mm/min)
+M566 X720 Y720 Z24 E400                  ; jerk, Set maximum instantaneous speed changes (mm/min)
 M203 X18000 Y18000 Z300 E3600            ; Set maximum speeds (mm/min)
-M201 X1000 Y1000 Z100 E3000              ; Set accelerations (mm/s^2)
+;M201 X1000 Y1000 Z100 E3000              ; Set accelerations (mm/s^2)
+M201 X1500 Y1500 Z250 E3000              ; Set accelerations (mm/s^2)
 ;M906 X1400 Y1400 Z1400 E600 I30         ; Set peak motor currents to 85% (mA) and motor idle factor
-M906 X960 Y960 Z9600 E600 I30            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
+M906 X800 Y800 Z1400 E600 I30            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
