@@ -53,7 +53,7 @@ M591 D0 P3 C"e0stop" S1 R20:200 L25.5 E20.0 ; Duet3D rotating magnet sensor for 
 ; Z-Probe
 M950 S0 C"exp.8"                                                 ; create servo 0 pin 8 for BLTouch
 M558 P9 C"zprobe.in+zprobe.mod" F150 H5 R0.5 T3500 A10 S0.03 B0  ; set Z probe type to bltouch and the dive height + speeds, bed on
-G31 P25 X37 Y0 Z3.400                                             ; Set Z probe trigger value, offset and trigger height
+G31 P25 X34.5 Y0.2 Z3.400                                             ; Set Z probe trigger value, offset and trigger height
 ;M557 X40:300 Y10:260 P20			                             ; Set Z probe point or define probing grid 20x20 points per axis
 M557 X40:300 Y10:260 P5			                             ; Set Z probe point or define probing grid 5x5 points per axis
 
@@ -93,10 +93,10 @@ G10 P0 R0 S160                           ; Set initial tool 0 active and standby
 T0                                       ; Select first tool
 
 ; Pressure Advance
-M572 D0 S0.8                             ; enable pressure advance 0.8mm
+;M572 D0 S0.8                             ; enable pressure advance 0.8mm
 
 ; firmware retractation (activate in slicer)
-M207 S4.5 F1500 Z0.5                   ; retract 4.5mm 25mm/s z lift 0.5mm
+;M207 S4.5 F1500 Z0.5                   ; retract 4.5mm 25mm/s z lift 0.5mm
 
 ; Automatic saving after power loss is enabled
 M911 S21.0 R23.0 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000"
