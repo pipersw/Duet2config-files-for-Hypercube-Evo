@@ -33,7 +33,7 @@ M203 X18000 Y18000 Z300 E3600            ; Set maximum speeds (mm/min)
 ;M201 X1000 Y1000 Z100 E3000              ; Set accelerations (mm/s^2)
 M201 X1500 Y1500 Z250 E3000              ; Set accelerations (mm/s^2)
 ;M906 X1400 Y1400 Z1400 E600 I30         ; Set peak motor currents to 85% (mA) and motor idle factor
-M906 X800 Y800 Z1400 E600 I30            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
+M906 X800 Y800 Z1100 E600 I30            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
@@ -60,10 +60,11 @@ M557 X40:300 Y10:260 P5			                             ; Set Z probe point or de
 
 ; Thermal Sensors
 M308 S0 P"bedtemp" Y"thermistor" T100000 B3950              ; configure sensor 0 as thermistor on pin bedtemp
-M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.060000e-8  ; configure sensor 1 as thermistor on pin e0temp
+;M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.060000e-8 ; configure sensor 1 as thermistor on pin e0temp
+M308 S1 P"spi.cs1" Y"rtd-max31865" F50                      ; configure sensor 1 as pt100 on spi pin cs1, filter 50Hz
 M308 S2 Y"drivers" A"TMC2660"                               ; configure sensor 2 as temperature warning and overheat flags on the TMC2660 on Duet
 M308 S3 P"e1temp" Y"thermistor" T10000 B3950 A"Eau"         ; configure sensor 3 as thermistor on pin e1temp for temp water 
-M308 S4 Y"mcu-temp" A"MCU"                                         ; configure sensor 4 for cpu temperature
+M308 S4 Y"mcu-temp" A"MCU"                                  ; configure sensor 4 for cpu temperature
 
 
 ; Heaters
