@@ -37,7 +37,7 @@ M906 X800 Y800 Z1100 E600 I30            ; Set peak motor currents between 50% t
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
-M208 X0:285 Y-3:265 Z0:190               ; Set axis minima maxima
+M208 X0:300 Y-3:300 Z0:190               ; Set axis minima maxima
 
 ; define the X and Y coordinates of the adjusting screws
 M671 X-10:176.5:310 Y320:-0.1:320 P0.5   ; adjusting screws at rear left, front middle and rear right, thread pitch 0.5mm
@@ -57,38 +57,43 @@ G31 P25 X34.5 Y0.2 Z3.400                                             ; Set Z pr
 ;M557 X40:300 Y10:260 P20			                             ; Set Z probe point or define probing grid 20x20 points per axis
 M557 X40:300 Y10:260 P5			                             ; Set Z probe point or define probing grid 5x5 points per axis
 
+; Thermal Sensors and heaters for bed
+M308 S0 P"bedtemp" Y"thermistor" T100000 B3950 A"Bed"       ; configure sensor 0 as thermistor on pin bedtemp
+M950 H0 C"bedheat" T0                          				; create bed heater output on bedheat and map it to sensor 0
+M140 H0 S0 R50                                  			; set temperature for bed 50deg in standby
+M307 H0 A167.0 C982.2 D5.1 S1.00 V23.1 B0      				; Disable bang-bang mode for the bed heater and set PWM limit
+M143 H0 S135 A2                                 			; switch off heater temporarily if it exceeds 135°C
+M143 H0 S140 A0                                 			; raise a heater fault if it exceeds 140°C
+M144 														; put bed heater on standby temperature
 
-; Thermal Sensors
-M308 S0 P"bedtemp" Y"thermistor" T100000 B3950              ; configure sensor 0 as thermistor on pin bedtemp
-;M308 S1 P"e0temp" Y"thermistor" T100000 B4725 C7.060000e-8 ; configure sensor 1 as thermistor on pin e0temp
-M308 S1 P"spi.cs1" Y"rtd-max31865" F50                      ; configure sensor 1 as pt100 on spi pin cs1, filter 50Hz
-M308 S2 Y"drivers" A"TMC2660"                               ; configure sensor 2 as temperature warning and overheat flags on the TMC2660 on Duet
-M308 S3 P"e1temp" Y"thermistor" T10000 B3950 A"Eau"         ; configure sensor 3 as thermistor on pin e1temp for temp water 
-M308 S4 Y"mcu-temp" A"MCU"                                  ; configure sensor 4 for cpu temperature
+; Thermal Sensors and heaters for hotend 0
+M308 S1 P"spi.cs1" Y"rtd-max31865" F50 A"Hotend0"           ; configure sensor 1 as pt100 on spi pin cs1, filter 50Hz
+M950 H1 C"e0heat" T1                           				; create nozzle heater output on e0heat and map it to sensor 1
+M307 H1 A771.7 C282.9 D6.2 S1.00 V24.0 B0      				; Disable bang-bang mode for the nozzle heater and set PWM limit
+M143 H1 S275 A2                                 			; switch off heater temporarily if it exceeds 275°C
+M143 H1 S285 A0                                 			; raise a heater fault if it exceeds 285°C
 
+; Thermal Sensors and heaters for TMC drivers
+M308 S2 Y"drivers" A"Drivers"                               ; configure sensor 2 as temperature warning and overheat flags on the TMC2660 on Duet
 
-; Heaters
-M950 H0 C"bedheat" T0                          ; create bed heater output on bedheat and map it to sensor 0
-M140 H0 S0 R0                                  ; set temperature for bed
-M307 H0 A167.0 C982.2 D5.1 S1.00 V23.1 B0      ; Disable bang-bang mode for the bed heater and set PWM limit
-M950 H1 C"e0heat" T1                           ; create nozzle heater output on e0heat and map it to sensor 1
-M307 H1 A771.7 C282.9 D6.2 S1.00 V24.0 B0      ; Disable bang-bang mode for the nozzle heater and set PWM limit
+; Thermal Sensors and heaters for water temperature
+M308 S3 P"e1temp" Y"thermistor" T10000 B3950 A"Water"       ; configure sensor 3 as thermistor on pin e1temp for temp water 
+
+; Thermal Sensors and heaters for processor
+M308 S4 Y"mcu-temp" A"Processor"                            ; configure sensor 4 for cpu temperature
+
 
 ; Calibrate MCU Temperature
 M912 P0 S6.0                                 
 
-; Max temp Protection
-M143 H0 S140                                 ; Set temperature limit for heater 0 to 140C
-M143 H1 S285                                 ; Set temperature limit for heater 1 to 285C
-
 ; Fans
 M950 F0 C"fan0" Q100                           ; create fan 0 on pin fan0 and set its frequency for tool 0
 M106 P0 S0 H-1                                 ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
-M950 F1 C"!fan1+^exp.pb6" Q100                 ; create fan 1 on pin fan1 and set its frequency
+M950 F1 C"!fan1+^exp.pb6" Q100                 ; create fan 1 on pin fan1 and set its frequency, read pwm
 M106 P1 S1.0 T45 H1 C"Pump"                    ; Set fan 1/pump value to 100% when temp >45C
 
 ; Tools
-M563 P0 D0 H1 S"HotEnd"                  ; Define tool 0
+M563 P0 D0 H1                            ; Define tool 0 on extruder 0, heater 1 fan 0
 G10 P0 X0 Y0 Z0                          ; Set tool 0 axis offsets
 G10 P0 R0 S160                           ; Set initial tool 0 active and standby temperatures to 160C
 T0                                       ; Select first tool
