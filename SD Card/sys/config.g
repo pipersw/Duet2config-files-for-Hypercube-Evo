@@ -17,7 +17,6 @@ M552 S1                                        ; enable network
 M586 P0 S1                                     ; enable HTTP
 M586 P1 S0                                     ; disable FTP
 M586 P2 S0                                     ; disable Telnet
-;M551 P"celianou" ; set password
 
 ; Drives
 M569 P0 S0 F8                            ; Drive 0 goes forwards (X)
