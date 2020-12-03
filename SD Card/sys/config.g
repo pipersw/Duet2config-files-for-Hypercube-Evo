@@ -15,7 +15,7 @@ M669 K1                                        ; switch to CoreXY mode
 ; Network
 M552 S1                                        ; enable network
 M586 P0 S1                                     ; enable HTTP
-M586 P1 S1                                     ; enable FTP
+M586 P1 S0                                     ; disable FTP
 M586 P2 S0                                     ; disable Telnet
 ;M551 P"celianou" ; set password
 
