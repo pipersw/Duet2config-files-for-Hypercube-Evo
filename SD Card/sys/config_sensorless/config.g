@@ -42,7 +42,7 @@ M203 X9000.00 Y9000.00 Z1000.00 E3600.00                ; set maximum speeds (mm
 M204 P500.0 T500.0                                      ; set print and travel accelerations (mm(s^2)
 M566 X480.00 Y480.00 Z48.00 E300.00                     ; set maximum instantaneous speed changes (mm/min)
 ;M906 X1400 Y1400 Z1400 E600 I30         ; Set peak motor currents to 85% (mA) and motor idle factor
-M906 X800 Y800 Z800 E600 I40            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
+M906 X1100 Y1100 Z800 E600 I40            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
 M84 S30                                  ; Set idle timeout
 
 ; Axis Limits
