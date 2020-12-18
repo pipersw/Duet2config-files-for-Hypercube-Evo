@@ -15,7 +15,7 @@
 M550 P"Hypercube"                                 ; set printer name
 M669 K1                                           ; switch to CoreXY mode
 ;
-M552 S1                                                ; enable network
+M552 S1 P0.0.0.0                                       ; enable network, set IP DHCP
 M586 P0 S1                                             ; enable HTTP
 M586 P1 S1                                             ; enable FTP
 M586 P2 S0                                             ; disable Telnet
