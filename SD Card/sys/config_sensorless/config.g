@@ -1,7 +1,7 @@
 ; =========================================================================================================
 ;
 ; Configuration file for Duet WiFi (firmware version 3)           Version 20201129
-; for 0.9° motors on xyz
+; for 0.9° motors on xy
 ; extruder heater connected on E1
 ; BLTOUCH
 ;
@@ -15,7 +15,7 @@
 M550 P"Hypercube"                                 ; set printer name
 M669 K1                                           ; switch to CoreXY mode
 ;
-M552 S1 P0.0.0.0                                       ; enable network, set IP DHCP
+M552 S1 P192.168.1.33                                  ; enable network, set IP
 M586 P0 S1                                             ; enable HTTP
 M586 P1 S1                                             ; enable FTP
 M586 P2 S0                                             ; disable Telnet
@@ -26,12 +26,12 @@ M575 P1 S1 B57600                                      ; Enable support for Pane
 ; Drives
 ; =========================================================================================================
 ;
-M569 P0 S0 F8                            ; Drive 0 goes forwards (X)
-M569 P1 S0 F8                            ; Drive 1 goes forwards (Y)
-M569 P2 S0 F8                            ; Drive 2 goes forwards (Z)
-M569 P3 S1 F4                            ; Drive 3 goes backwards (E0)
-M569 P4 S0 F4                            ; Drive 4 goes forwards (E1)
-M584 X0 Y1 Z2 E3                         ; Set drive mapping
+M569 P0 S0 D3 F8                            ; Drive 0 goes forwards (X) stealthChop 
+M569 P1 S0 D3 F8                            ; Drive 1 goes forwards (Y) stealthChop 
+M569 P2 S0 D3 F8                            ; Drive 2 goes forwards (Z) stealthChop 
+M569 P3 S1 D3 F4                            ; Drive 3 goes backwards (E0) stealthChop 
+M569 P4 S0 D3 F4                            ; Drive 4 goes forwards (E1 or Z) stealthChop 
+M584 X0 Y1 Z2:4 E3                         ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X160 Y160 Z1600 E415                 ; Set steps per mm with 1/16 and BMG extruder with 1.8° stepper on XY, 1.8° on Z, leadscrew pas 2mm
 ;M566 X720 Y720 Z24 E400                  ; jerk, Set maximum instantaneous speed changes (mm/min)
