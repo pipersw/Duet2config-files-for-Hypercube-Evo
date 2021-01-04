@@ -20,3 +20,13 @@ G30 			        ; Do a single probe to home Z axis
 M558 A10 F100		    ; Set detailed probing at slower feed rate
 G30                     ; Do a single probe to home Z axis
 
+M569 P0 S0 D3 F8 H50 V50                    ; Drive 0 goes forwards (X) stealthChop  
+M569 P1 S0 D3 F8 H50 V50                    ; Drive 1 goes forwards (Y) stealthChop  
+M569 P2 S0 D3 F8 H50 V50                    ; Drive 2 goes forwards (Z) stealthChop  
+M569 P3 S1 D3 F4 H50 V50                    ; Drive 3 goes backwards (E0) stealthChop  
+M569 P4 S0 D3 F4 H50 V50                    ; Drive 4 goes forwards (E1 or Z) stealthChop  
+M915 P0 T50                                 ; Drive 0 set coolstep
+M915 P1 T50                                 ; Drive 1 set coolstep
+M915 P2 T50                                 ; Drive 2 set coolstep
+M915 P3 T50                                 ; Drive 3 set coolstep
+M915 P4 T50                                 ; Drive 4 set coolstep
