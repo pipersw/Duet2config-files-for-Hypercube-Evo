@@ -26,11 +26,11 @@ M575 P1 S1 B57600                                      ; Enable support for Pane
 ; Drives
 ; =========================================================================================================
 ;
-M569 P0 S0 D3 F8                            ; Drive 0 goes forwards (X) stealthChop 
-M569 P1 S0 D3 F8                            ; Drive 1 goes forwards (Y) stealthChop 
-M569 P2 S0 D3 F8                            ; Drive 2 goes forwards (Z) stealthChop 
-M569 P3 S1 D3 F4                            ; Drive 3 goes backwards (E0) stealthChop 
-M569 P4 S0 D3 F4                            ; Drive 4 goes forwards (E1 or Z) stealthChop 
+M569 P0 S0 D3 F8 V34                           ; Drive 0 goes forwards (X) stealthChop 
+M569 P1 S0 D3 F8 V34                            ; Drive 1 goes forwards (Y) stealthChop 
+M569 P2 S0 D3 F8 V34                            ; Drive 2 goes forwards (Z) stealthChop 
+M569 P3 S1 D3 F4 V34                            ; Drive 3 goes backwards (E0) stealthChop 
+M569 P4 S0 D3 F4 V34                            ; Drive 4 goes forwards (E1 or Z) stealthChop 
 M584 X0 Y1 Z2:4 E3                         ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X160 Y160 Z1600 E415                 ; Set steps per mm with 1/16 and BMG extruder with 1.8° stepper on XY, 1.8° on Z, leadscrew pas 2mm
