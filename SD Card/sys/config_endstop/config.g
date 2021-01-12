@@ -24,11 +24,11 @@ M586 P2 S0                                     ; disable Telnet
 ; toff 3
 ; hend 4
 ; hstrt 6
-M569 P0 S0 D2 F3 B24 Y6:4                 ; Drive 0 goes forwards (X) spread cycle 
-M569 P1 S0 D2 F3 B24 Y6:4                 ; Drive 1 goes forwards (Y) spread cycle 
-M569 P2 S0 D2 F3 B24 Y6:4                 ; Drive 2 goes forwards (Z) spread cycle 
-M569 P3 S1 D2 F3 B24 Y6:4                 ; Drive 3 goes backwards (E0) spread cycle 
-M569 P4 S0 D2 F3 B24 Y6:4                 ; Drive 4 goes forwards (E1 or Z) spread cycle 
+M569 P0 S0 D2 F3 B36 Y6:4                 ; Drive 0 goes forwards (X) spread cycle 
+M569 P1 S0 D2 F3 B36 Y6:4                 ; Drive 1 goes forwards (Y) spread cycle 
+M569 P2 S0 D2 F3 B36 Y6:4                 ; Drive 2 goes forwards (Z) spread cycle 
+M569 P3 S1 D2 F3 B36 Y6:4                 ; Drive 3 goes backwards (E0) spread cycle 
+M569 P4 S0 D2 F3 B36 Y6:4                 ; Drive 4 goes forwards (E1 or Z) spread cycle 
 M584 X0 Y1 Z2:4 E3                       ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X160 Y160 Z1600 E415                 ; Set steps per mm with 1/16 and BMG extruder with 1.8° stepper on XY, 1.8° on Z, leadscrew pas 2mm
