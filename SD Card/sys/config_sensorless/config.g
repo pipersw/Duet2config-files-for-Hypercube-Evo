@@ -26,25 +26,30 @@ M575 P1 S1 B57600                                      ; Enable support for Pane
 ; Drives
 ; =========================================================================================================
 ;
-M569 P0 S0 D2 F8                           ; Drive 0 goes forwards (X) spread cycle 
-M569 P1 S0 D2 F8                            ; Drive 1 goes forwards (Y) spread cycle 
-M569 P2 S0 D2 F8                            ; Drive 2 goes forwards (Z) spread cycle 
-M569 P3 S1 D2 F4                            ; Drive 3 goes backwards (E0) spread cycle 
-M569 P4 S0 D2 F4                            ; Drive 4 goes forwards (E1 or Z) spread cycle 
-M584 X0 Y1 Z2:4 E3                         ; Set drive mapping
+; value to be added:
+; tbl 2
+; toff 3
+; hend 4
+; hstrt 6
+M569 P0 S0 D2 F3 B2 Y6:4                 ; Drive 0 goes forwards (X) spread cycle 
+M569 P1 S0 D2 F3 B2 Y6:4                 ; Drive 1 goes forwards (Y) spread cycle 
+M569 P2 S0 D2 F3 B2 Y6:4                 ; Drive 2 goes forwards (Z) spread cycle 
+M569 P3 S1 D2 F3 B2 Y6:4                 ; Drive 3 goes backwards (E0) spread cycle 
+M569 P4 S0 D2 F3 B2 Y6:4                 ; Drive 4 goes forwards (E1 or Z) spread cycle 
+M584 X0 Y1 Z2:4 E3                       ; Set drive mapping
 M350 X16 Y16 Z16 E16 I1                  ; Configure microstepping with interpolation
 M92 X160 Y160 Z1600 E415                 ; Set steps per mm with 1/16 and BMG extruder with 1.8° stepper on XY, 1.8° on Z, leadscrew pas 2mm
 ;M566 X720 Y720 Z24 E400                  ; jerk, Set maximum instantaneous speed changes (mm/min)
 ;M203 X18000 Y18000 Z300 E3600            ; Set maximum speeds (mm/min)
 ;M201 X1500 Y1500 Z250 E3000              ; Set accelerations (mm/s^2)
-M201 X500.00 Y500.00 Z100.00 E500.00                    ; set accelerations (mm/s^2)
-M203 X9000.00 Y9000.00 Z1000.00 E3600.00                ; set maximum speeds (mm/min)
-M204 P500.0 T500.0                                      ; set print and travel accelerations (mm(s^2)
-M566 X480.00 Y480.00 Z48.00 E300.00                     ; set maximum instantaneous speed changes (mm/min)
-;M906 X1400 Y1400 Z1400 E600 I30         ; Set peak motor currents to 85% (mA) and motor idle factor
-;M906 X1100 Y1100 Z800 E600 I40            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
-M906 X800 Y800 Z800 E600 I40            ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
-M84 S30                                  ; Set idle timeout
+M201 X500.00 Y500.00 Z100.00 E500.00      ; set accelerations (mm/s^2)
+M203 X9000.00 Y9000.00 Z1000.00 E3600.00  ; set maximum speeds (mm/min)
+M204 P500.0 T500.0                        ; set print and travel accelerations (mm(s^2)
+M566 X480.00 Y480.00 Z48.00 E300.00       ; set maximum instantaneous speed changes (mm/min)
+;M906 X1400 Y1400 Z1400 E600 I30          ; Set peak motor currents to 85% (mA) and motor idle factor
+;M906 X1100 Y1100 Z800 E600 I40           ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
+M906 X800 Y800 Z800 E600 I40              ; Set peak motor currents between 50% to 85% (mA) and motor idle factor
+M84 S30                                   ; Set idle timeout
 
 ; Axis Limits
 M208 X0:300 Y-3:300 Z0:190               ; Set axis minima maxima
