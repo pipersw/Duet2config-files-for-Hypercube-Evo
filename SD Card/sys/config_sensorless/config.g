@@ -15,7 +15,10 @@
 M550 P"Hypercube"                                 ; set printer name
 M669 K1                                           ; switch to CoreXY mode
 ;
-M552 S1 P192.168.1.33                                  ; enable network, set IP
+<<<<<<< Updated upstream
+M552 S1 P192.168.1.34                                  ; enable network, set IP
+                                     ; enable network
+>>>>>>> Stashed changes
 M586 P0 S1                                             ; enable HTTP
 M586 P1 S1                                             ; enable FTP
 M586 P2 S0                                             ; disable Telnet
@@ -88,8 +91,8 @@ M143 H0 S135 A2                                 			; switch off heater temporari
 M143 H0 S140 A0                                 			; raise a heater fault if it exceeds 140°C
 M144 														; put bed heater on standby temperature
 
-; Thermal Sensors and heaters for hotend 0
-M308 S1 P"spi.cs1" Y"rtd-max31865" F50 A"Hotend0"           ; configure sensor 1 as pt100 on spi pin cs1, filter 50Hz
+; Thermal Sensors and heaters for hotend
+M308 S1 P"spi.cs1" Y"rtd-max31865" F50 A"Hotend"           ; configure sensor 1 as pt100 on spi pin cs1, filter 50Hz
 M950 H1 C"e0heat" T1                           				; create nozzle heater output on e0heat and map it to sensor 1
 M307 H1 A771.7 C282.9 D6.2 S1.00 V24.0 B0      				; Disable bang-bang mode for the nozzle heater and set PWM limit
 M143 H1 S275 A2                                 			; switch off heater temporarily if it exceeds 275°C
