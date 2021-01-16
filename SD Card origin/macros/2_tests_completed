@@ -1,0 +1,16 @@
+;test completed macro for mini 5+ v0.5 funtional testing
+M30 "0:/sys/config.g"
+M30 "0:/sys/config.g.bak"
+M30 "0:/sys/Duet3Firmware_Mini5plus_v04.uf2"
+M471 S"0:/sys/config_default.g" T"0:/sys/config.g" D1
+M30 "0:/macros/0_test"
+M30 "0:/macros/1_PanelCheck"
+M30 "0:/macros/test_HeatFan"
+M30 "0:/macros/test_IOs"
+M30 "0:/macros/test_Motors"
+M30 "0:/macros/test_Temps"
+M30 "0:/macros/mini2.txt"
+M30 "0:/macros/Mini5test.txt"
+M30 "0:/macros/SETNETWORK14"
+M30 "0:/macros/SETNETWORK24"
+echo "Test macros deleted - restart"
